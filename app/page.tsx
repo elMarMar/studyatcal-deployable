@@ -1,10 +1,11 @@
+import SignupForm from "./components/SignupForm";
+import { AuthProvider } from "./api/auth/AuthContext";
+
+
 export default function Home() {
   return (
-    <>
-     <div className="bg-[#FCBF3A] min-h-screen w-full">
-      <div className="bg-[#FCBF3A] min-h-screen w-full flex flex-col">
-      </div>
-    </div>
-    </>
-  );
+    <AuthProvider>
+      <SignupForm />
+    </AuthProvider>
+  )
 }
