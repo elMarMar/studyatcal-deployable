@@ -1,13 +1,29 @@
 "use client";
 import { useAuth } from "../api/auth/AuthContext";
 import { useState } from "react";
-
 function SignupForm() {
   const { signup, loginWithGoogle } = useAuth();
   const [creds, setCreds] = useState({ email: "", password: "" });
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const updateCreds = (field: any) => (e: any) =>
     setCreds({ ...creds, [field]: e.target.value });
+
+  const handleSignup = async () => {
+    setError(null);
+    setSuccess(null);
+    setLoading(true);
+    try {
+      await signup(creds.email, creds.password);
+      setSuccess("Signup successful! You can now log in.");
+    } catch (err: any) {
+      setError(err?.message || "Signup failed. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-blue-950/40 backdrop-blur-sm flex items-center justify-center z-50">
@@ -33,6 +49,9 @@ function SignupForm() {
           Sign up to get started
         </p>
 
+        {error && <div className="mb-4 text-red-600 text-center text-sm">{error}</div>}
+        {success && <div className="mb-4 text-green-600 text-center text-sm">{success}</div>}
+
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -46,6 +65,7 @@ function SignupForm() {
             placeholder="you@berkeley.edu"
             onChange={updateCreds("email")}
             className="w-full px-3.5 py-2.5 text-sm border border-slate-200 rounded-sm bg-white text-slate-800 placeholder-slate-300 outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition"
+            disabled={loading}
           />
         </div>
 
@@ -62,14 +82,16 @@ function SignupForm() {
             placeholder="Create a password"
             onChange={updateCreds("password")}
             className="w-full px-3.5 py-2.5 text-sm border border-slate-200 rounded-sm bg-white text-slate-800 placeholder-slate-300 outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition"
+            disabled={loading}
           />
         </div>
 
         <button
           className="w-full py-2.5 bg-blue-900 hover:bg-blue-950 text-white text-sm font-medium rounded-sm transition active:scale-[0.99]"
-          onClick={() => signup(creds.email, creds.password)}
+          onClick={handleSignup}
+          disabled={loading}
         >
-          Sign Up
+          {loading ? "Signing up..." : "Sign Up"}
         </button>
 
         <div className="flex items-center gap-3 my-5">
@@ -83,6 +105,7 @@ function SignupForm() {
         <button
           className="w-full py-2.5 border border-slate-200 hover:border-slate-300 hover:bg-white bg-amber-50 text-slate-700 text-sm font-medium rounded-sm flex items-center justify-center gap-2.5 transition"
           onClick={loginWithGoogle}
+          disabled={loading}
         >
           <svg width="17" height="17" viewBox="0 0 24 24">
             <path
