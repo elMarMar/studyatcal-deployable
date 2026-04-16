@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Nunito, Hind_Guntur, Tienne } from "next/font/google";
 import "./globals.css";
+import NavBar from "./components/NavBar"
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -30,11 +31,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
+    <div>
+      <html
       lang="en"
-      className={`${nunito.variable} ${hindGuntur.variable} ${tienne.variable} h-full antialiased`}
-    >
+      className={`${nunito.variable} ${hindGuntur.variable} ${tienne.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
+    <NavBar/>
+
+
+    </div>
+    
   );
 }
