@@ -13,7 +13,8 @@ type NavbarProps = {
 
 function Navbar() {
   return (
-    <div className="bg-[#FFFDEE] h-17 w-full shadow-sm flex items-center justify-content px-10 gap-50 fixed">
+    <div className="bg-[#FFFDEE] h-17 w-full shadow-sm flex items-center justify-between px-10 fixed">
+      <Searchbar/>
       <h1 className="text-[#185FA5] text-[46px] font-black font-nunito">
         Study at Cal
       </h1>

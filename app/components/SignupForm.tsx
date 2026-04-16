@@ -25,11 +25,11 @@ function SignupForm() {
     }
   };
 
-  //TODO: implement x button
+  //TODO: implement x button functionality
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="relative bg-#FFFDEE rounded-xl border border-[#123175] border-2 w-full max-w-md px-11 py-12 shadow-2xl">
+      <div className="relative bg-[#FFFDEE] rounded-xl border border-[#123175] border-2 w-full max-w-md px-11 py-12 shadow-2xl">
         <button className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-full text-slate-400 hover:bg-blue-900/10 hover:text-blue-900 transition-colors">
           <svg
             width="14"
