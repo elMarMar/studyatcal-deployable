@@ -4,7 +4,7 @@ import { useState } from "react";
 function SignupForm() {
   const { signup, loginWithGoogle } = useAuth();
   const [creds, setCreds] = useState({ email: "", password: "" });
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null); //NOT SURE HOW THIS WORKS YET LOL
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -25,9 +25,11 @@ function SignupForm() {
     }
   };
 
+  //TODO: implement x button
+
   return (
-    <div className="fixed inset-0 bg-blue-950/40 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="relative bg-amber-50 rounded-sm w-full max-w-md px-11 py-12 shadow-2xl border border-blue-900/10">
+    <div className="fixed inset-0 flex items-center justify-center z-50">
+      <div className="relative bg-#FFFDEE rounded-xl border border-[#123175] border-2 w-full max-w-md px-11 py-12 shadow-2xl">
         <button className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-full text-slate-400 hover:bg-blue-900/10 hover:text-blue-900 transition-colors">
           <svg
             width="14"
@@ -42,20 +44,17 @@ function SignupForm() {
           </svg>
         </button>
 
-        <h1 className="text-center text-2xl font-serif text-blue-900 tracking-tight mb-2">
+        <h1 className="text-center text-[28px] font-nunito text-[#123175] font-bold mb-2">
           Welcome to Study at Cal!
         </h1>
-        <p className="text-center text-sm text-slate-400 mb-8">
+        <p className="text-center text-md font-hind-guntur text-slate-400 mb-8">
           Sign up to get started
         </p>
-
-        {error && <div className="mb-4 text-red-600 text-center text-sm">{error}</div>}
-        {success && <div className="mb-4 text-green-600 text-center text-sm">{success}</div>}
 
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-[11px] font-medium uppercase tracking-widest text-blue-900 mb-1.5"
+            className="block text-[11px] font-medium uppercase tracking-widest text-[#123175] mb-1.5"
           >
             Email
           </label>
@@ -64,7 +63,7 @@ function SignupForm() {
             type="text"
             placeholder="you@berkeley.edu"
             onChange={updateCreds("email")}
-            className="w-full px-3.5 py-2.5 text-sm border border-slate-200 rounded-sm bg-white text-slate-800 placeholder-slate-300 outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition"
+            className="w-full px-3.5 py-2.5 text-sm border border-slate-200 rounded-xl bg-white text-slate-800 placeholder-slate-300 outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition"
             disabled={loading}
           />
         </div>
@@ -72,7 +71,7 @@ function SignupForm() {
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block text-[11px] font-medium uppercase tracking-widest text-blue-900 mb-1.5"
+            className="block text-[11px] font-medium uppercase tracking-widest text-[#123175] mb-1.5"
           >
             Password
           </label>
@@ -81,13 +80,13 @@ function SignupForm() {
             type="password"
             placeholder="Create a password"
             onChange={updateCreds("password")}
-            className="w-full px-3.5 py-2.5 text-sm border border-slate-200 rounded-sm bg-white text-slate-800 placeholder-slate-300 outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition"
+            className="w-full px-3.5 py-2.5 text-sm border border-slate-200 rounded-xl bg-white text-slate-800 placeholder-slate-300 outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/20 transition"
             disabled={loading}
           />
         </div>
 
         <button
-          className="w-full py-2.5 bg-blue-900 hover:bg-blue-950 text-white text-sm font-medium rounded-sm transition active:scale-[0.99]"
+          className="w-full p-2.5 bg-[#EF9F27] hover:bg-[#F1AD46] font-hind-guntur text-white text-md font-bold rounded-xl transition"
           onClick={handleSignup}
           disabled={loading}
         >
@@ -103,7 +102,7 @@ function SignupForm() {
         </div>
 
         <button
-          className="w-full py-2.5 border border-slate-200 hover:border-slate-300 hover:bg-white bg-amber-50 text-slate-700 text-sm font-medium rounded-sm flex items-center justify-center gap-2.5 transition"
+          className="w-full py-2.5 border border-slate-200 hover:border-slate-300 hover:bg-white bg-amber-50 text-slate-700 text-sm font-medium rounded-xl flex items-center justify-center gap-2.5 transition"
           onClick={loginWithGoogle}
           disabled={loading}
         >
