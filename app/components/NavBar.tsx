@@ -20,11 +20,11 @@ function Navbar() {
       <div className="flex items-center justify-content px-10 gap-5">
         <button
           //TODO: Fix hover color change not working
-          className="w-auto p-2.5 bg-[#EF9F27] hover:bg-[#F1AD46] font-hind-guntur text-white text-md font-bold rounded-xl transition"
+          className="w-auto p-2.5 bg-[#EF9F27] hover:bg-[#F1AD46] font-tienne text-white text-md font-bold rounded-xl transition"
         >
           Log in
         </button>
-        <button className="w-auto p-2.5 bg-[#378ADD] hover:bg-[#599EE3] font-hind-guntur text-white text-md font-bold rounded-xl transition">
+        <button className="w-auto p-2.5 bg-[#378ADD] hover:bg-[#599EE3] font-tienne text-white text-md font-bold rounded-xl transition">
           Sign up
         </button>
       </div>
