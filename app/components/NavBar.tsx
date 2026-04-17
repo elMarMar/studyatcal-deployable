@@ -13,14 +13,13 @@ type NavbarProps = {
 
 function Navbar() {
   return (
-    <div className="bg-[#FFFDEE] h-17 w-full shadow-sm flex items-center justify-between px-10 fixed">
+    <div className="bg-[#FFFDEE] h-17 w-full shadow-sm flex items-center justify-between px-10 sticky top-0">
       <Searchbar/>
       <h1 className="text-[#185FA5] text-[46px] font-black font-nunito">
         Study at Cal
       </h1>
-      <div className="flex items-center justify-content px-10 gap-5">
+      <div className="flex items-center justify-content px-5 gap-5">
         <button
-          //TODO: Fix hover color change not working
           className="w-auto p-2.5 bg-[#EF9F27] hover:bg-[#F1AD46] font-tienne text-white text-md font-bold rounded-xl transition"
         >
           Log in

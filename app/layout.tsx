@@ -33,15 +33,17 @@ export default function RootLayout({
 }>) {
   //TODO: Add filter props to NavBar and SideNav
   return (
-    <div className="bg-[#185FA5] z-0">
-      <html
-        lang="en"
-        className={`${nunito.variable} ${hindGuntur.variable} ${tienne.variable} h-full antialiased`}
-      >
-        <body className="min-h-full flex flex-col">{children}</body>
-      </html>
-      <NavBar />
-      <SideNav />
-    </div>
+    <html
+      lang="en"
+      className={`${nunito.variable} ${hindGuntur.variable} ${tienne.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-[#185FA5]">
+        <NavBar />
+        <div className="flex flex-row flex-1">
+          <SideNav />
+          <main className="flex-1">{children}</main>
+        </div>
+      </body>
+    </html>
   );
 }

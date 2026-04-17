@@ -6,7 +6,7 @@ type SideNavProps = {
 
 function SideNav() {
   return (
-    <div className="bg-[#FFFDEE] h-screen w-70 p-6">
+    <div className="bg-[#FFFDEE] h-[vw100] w-70 p-6">
     </div>  
   );
 }
