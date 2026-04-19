@@ -7,7 +7,6 @@ type SearchbarProps = {
 
 //TODO: Add props, Handler function, and onChange ={}
 
-
 function Searchbar ()  {
   return (
     <>
