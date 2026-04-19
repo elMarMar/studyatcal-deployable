@@ -12,20 +12,16 @@ export default async function Home() {
 
   return (
     <AuthProvider>
-      <LocationCardBig/>
-    </AuthProvider>
-  );
-}
-
-
-/* <div className="p-3">
+      <div className="p-3">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-4 gap-y-4 w-full content-start">
           {
             locations.map((location) => (
-              <LocationCard location={location} />
+              <LocationCard key={location.id} location={location} />
             ))
           }
         </div>
       </div>
+    </AuthProvider>
+  );
+}
 
-*/
