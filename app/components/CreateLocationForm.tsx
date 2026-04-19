@@ -9,7 +9,7 @@ const CreateLocationForm = () => {
     image_url: '',
     google_maps_url: '',
     has_desk: false,
-    has_sofa: false,
+    has_sofa: false, 
     can_purchase_food_drinks: false,
     allows_drinks: false,
     allows_food: false,
@@ -19,6 +19,7 @@ const CreateLocationForm = () => {
     has_outlets: false,
     current_busyness: 0,
   });
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
