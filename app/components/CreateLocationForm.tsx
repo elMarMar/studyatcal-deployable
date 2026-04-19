@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 
 const CreateLocationForm = () => {
   const [form, setForm] = useState({
+    id: '',
     name: '',
     location: '',
     image_url: '',
@@ -45,7 +46,7 @@ const CreateLocationForm = () => {
       if (!res.ok) throw new Error('Failed to create location');
       setSuccess('Location created!');
       setForm({
-        name: '', location: '', image_url: '', google_maps_url: '',
+        id: '', name: '', location: '', image_url: '', google_maps_url: '',
         has_desk: false, has_sofa: false, can_purchase_food_drinks: false, allows_drinks: false, allows_food: false,
         noise_level: '', group_friendly: false, solo_friendly: false, has_outlets: false, current_busyness: 0,
       });
@@ -61,6 +62,10 @@ const CreateLocationForm = () => {
       <form className="space-y-4" onSubmit={handleSubmit}>
         {error && <div className="text-red-600 text-sm text-center">{error}</div>}
         {success && <div className="text-green-600 text-sm text-center">{success}</div>}
+        <div>
+          <label htmlFor="id" className="block text-sm font-medium text-gray-700">ID</label>
+          <input type="text" id="id" name="id" className="mt-1 block w-full border border-gray-300 rounded px-3 py-2" value={form.id} onChange={handleChange} disabled={loading} required />
+        </div>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
             <input type="text" id="name" name="name" className="mt-1 block w-full border border-gray-300 rounded px-3 py-2" value={form.name} onChange={handleChange} disabled={loading} />

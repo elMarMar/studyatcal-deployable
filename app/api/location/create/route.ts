@@ -5,6 +5,7 @@ export async function POST(request: Request) {
     const data = await request.json();
     // Destructure all expected fields from the request body
     const {
+        id,
         name,
         location,
         image_url,
@@ -18,15 +19,16 @@ export async function POST(request: Request) {
         group_friendly,
         solo_friendly,
         has_outlets,
-        //current_busyness
+        current_busyness
     } = data;
 
     try {
         const [result] = await pool.execute(
             `INSERT INTO locations (
-                name, location, image_url, google_maps_url, has_desk, has_sofa, can_purchase_food_drinks, allows_drinks, allows_food, noise_level, group_friendly, solo_friendly, has_outlets
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                id, name, location, image_url, google_maps_url, has_desk, has_sofa, can_purchase_food_drinks, allows_drinks, allows_food, noise_level, group_friendly, solo_friendly, has_outlets, current_busyness
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
             [
+                id,
                 name,
                 location,
                 image_url,
@@ -40,7 +42,7 @@ export async function POST(request: Request) {
                 group_friendly,
                 solo_friendly,
                 has_outlets,
-                //current_busyness || null
+                current_busyness
             ]
         );
         return NextResponse.json({ message: 'Location created successfully'}, { status: 201 });
