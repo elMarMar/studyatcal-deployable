@@ -3,6 +3,7 @@ import { Nunito, Hind_Guntur, Tienne } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import SideNav from "./components/SideNav";
+import { AuthProvider } from "./api/auth/AuthContext";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -38,11 +39,13 @@ export default function RootLayout({
       className={`${nunito.variable} ${hindGuntur.variable} ${tienne.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#185FA5]">
-        <NavBar />
-        <div className="flex flex-row flex-1">
-          <SideNav />
-          <main className="flex-1">{children}</main>
-        </div>
+        <AuthProvider>
+          <NavBar />
+          <div className="flex flex-row flex-1">
+            <SideNav />
+            <main className="flex-1">{children}</main>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

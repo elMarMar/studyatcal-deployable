@@ -25,10 +25,11 @@ type LocationCardBigProps = {
 const LocationCardBig = () => {
 
   return (
-    <div className="bg-[#FFFDEE] h-auto w-auto rounded-[40px] p-10 m-8 flex flex-col">
+    <div className="bg-[#FFFDEE] h-auto w-auto rounded-[40px] p-10 m-8 flex flex-col shadow-[8px_8px_0px_0px_#EF9F27]">
       <h2 className="font-tienne font-bold text-[#2D2D2D] text-[36px] p-2 pb-2">
         Doe Library
       </h2>
+      <div>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:grid-rows-2 auto-rows-min">
         <div className="flex flex-col gap-2 md:col-start-1 md:row-start-1 md:row-span-2">
           <div className="flex flex-row justify-content gap-3">
@@ -71,11 +72,7 @@ const LocationCardBig = () => {
               <p>Amenities: has Outlets</p>
             </li>
           </ul>
-          <h3 className="font-tienne font-bold text-[#2D2D2D] text-[1.5rem] mt-2">
-            Description
-          </h3>
-          <p>The Doe Memorial Library is the main library of the University of California, Berkeley Library System. The library is named after its benefactor, Charles Franklin Doe, who in 1904 bequeathed funds for its construction. It is located near the center of the Berkeley campus, facing Memorial Glade, and is adjacent to and physically connected with the Bancroft Library.</p>
-        </div>
+          </div>
         <div className="max-h-[30vh] md:col-start-2 md:col-span-2 md:row-start-1 md:row-span-2 md:max-h-[40vh]">
           <img
             src='./Doe.png'
@@ -83,8 +80,16 @@ const LocationCardBig = () => {
             className="h-full w-full object-contain"
           />
         </div>
+        </div>
+        <h3 className="font-tienne font-bold text-[#2D2D2D] text-[1.5rem] mt-2">
+            Description
+          </h3>
+          <p className="font-hind-guntur font-medium text-xl text-[#2D2D2D]">
+            The Doe Memorial Library is the main library of the University of California, Berkeley Library System. The library is named after its benefactor, Charles Franklin Doe, who in 1904 bequeathed funds for its construction. It is located near the center of the Berkeley campus, facing Memorial Glade, and is adjacent to and physically connected with the Bancroft Library.</p>
       </div>
     </div>
+
+    
   );
 };
 
@@ -97,4 +102,5 @@ export default LocationCardBig;
                 {display.description} 
            </p>
             </div>
+    
  * */

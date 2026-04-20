@@ -8,7 +8,8 @@ import LocationCardBig from "./components/LocationCardBig";
 export default async function Home() {
   // Fetch locations from the API route
   const res = await fetch("http://localhost:3000/api/locations", { cache: "no-store" });
-  const locations = await res.json();
+  const data = await res.json();
+  const locations = Array.isArray(data) ? data : [];
 
   return (
     <AuthProvider>
@@ -20,6 +21,7 @@ export default async function Home() {
             ))
           }
         </div>
+        <LocationCardBig/>
       </div>
     </AuthProvider>
   );

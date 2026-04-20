@@ -1,4 +1,6 @@
+"use client"
 import Searchbar from "./Searchbar";
+import { useRouter } from 'next/navigation';
 
 type NavbarProps = {
   //must have search property (that is a string)
@@ -12,6 +14,8 @@ type NavbarProps = {
 //TODO: add props later
 
 function Navbar() {
+  const router = useRouter();
+
   return (
     <div className="bg-[#FFFDEE] h-17 w-full shadow-sm flex items-center justify-between px-10 sticky top-0">
       <Searchbar/>
@@ -21,10 +25,11 @@ function Navbar() {
       <div className="flex items-center justify-content px-5 gap-5">
         <button
           className="w-auto p-2.5 bg-[#EF9F27] hover:bg-[#F1AD46] font-tienne text-white text-md font-bold rounded-xl transition"
-        >
+        onClick={() => router.push("/login")}>
           Log in
         </button>
-        <button className="w-auto p-2.5 bg-[#378ADD] hover:bg-[#599EE3] font-tienne text-white text-md font-bold rounded-xl transition">
+        <button className="w-auto p-2.5 bg-[#378ADD] hover:bg-[#599EE3] font-tienne text-white text-md font-bold rounded-xl transition"
+        onClick={() => router.push("/login")}>
           Sign up
         </button>
       </div>
