@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+functions/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -40,5 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-serviceAccountKey.json
+
 setAdmin.js
+serviceAccountKey.json
