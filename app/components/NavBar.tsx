@@ -20,9 +20,12 @@ function Navbar({filters} : NavbarProps) {
   return (
     <div className="bg-[#FFFDEE] h-17 w-full shadow-sm flex items-center justify-between px-10 sticky top-0">
       <Searchbar />
-      <h1 className="text-[#185FA5] text-[46px] font-black font-nunito">
-        Study at Cal
-      </h1>
+      <Link href="/">
+        <h1 className="text-[#185FA5] text-[46px] font-black font-nunito">
+          Study at Cal
+        </h1>
+      </Link>
+
       <div className="flex items-center justify-content px-5 gap-5">
         {user && isAdmin && (
           <Link href="/create-locations">
