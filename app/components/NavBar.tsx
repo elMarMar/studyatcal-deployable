@@ -13,9 +13,8 @@ type NavbarProps = {
   };
   setFilters: React.Dispatch<React.SetStateAction<any>>;
 };
-//TODO: add props later
 
-function Navbar() {
+function Navbar({filters} : NavbarProps) {
   const router = useRouter();
   const { user, isAdmin, logout } = useAuth();
   return (
@@ -25,30 +24,43 @@ function Navbar() {
         Study at Cal
       </h1>
       <div className="flex items-center justify-content px-5 gap-5">
+        {user && isAdmin && (
+          <Link href="/create-locations">
+            <button
+             className="w-auto p-2.5 bg-[#EF9F27] hover:bg-[#F1AD46] font-tienne text-white text-md font-bold rounded-xl transition"
+            >
+              Create Location
+            </button>
+          </Link>
+        )}
+
         {!user ? (
           <>
-            <button
+            <Link href="/login">
+              <button
               className="w-auto p-2.5 bg-[#EF9F27] hover:bg-[#F1AD46] font-tienne text-white text-md font-bold rounded-xl transition"
-              onClick={() => router.push("/login")}
-            >
-              Log in
-            </button>
-            <button
+              >
+                Log in
+              </button>
+            </Link>
+
+            <Link href="/login">
+              <button
               className="w-auto p-2.5 bg-[#378ADD] hover:bg-[#599EE3] font-tienne text-white text-md font-bold rounded-xl transition"
               onClick={() => router.push("/login")}
-            >
-              Sign up
-            </button>
+              >
+                Sign up 
+              </button>
+            </Link>
           </>
         ) : (
           <>
-            <button onClick={logout}>Logout</button>
+            <button onClick={logout}
+             className="w-auto p-2.5 bg-[#378ADD] hover:bg-[#599EE3] font-tienne text-white text-md font-bold rounded-xl transition"
+             >
+              Logout
+            </button>
           </>
-        )}
-        {user && isAdmin && (
-          <Link href="/create-locations">
-            Create Location
-          </Link>
         )}
       </div>
     </div>
