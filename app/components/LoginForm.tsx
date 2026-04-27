@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 function LoginForm() {
 const { login, loginWithGoogle } = useAuth();
 const router = useRouter();
+
   const [creds, setCreds] = useState({ email: "", password: "" });
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -23,6 +24,19 @@ const router = useRouter();
       setSuccess("Signup successful! You can now log in.");
     } catch (err: any) {
       setError(err?.message || "Signup failed. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
+    setError(null);
+    setLoading(true);
+    try {
+      await loginWithGoogle();
+      router.push("/");
+    } catch (err: any) {
+      setError(err?.message || "Google login failed. Try again.");
     } finally {
       setLoading(false);
     }
@@ -105,7 +119,7 @@ const router = useRouter();
 
         <button
           className="w-full py-2.5 border border-slate-200 hover:border-slate-300 hover:bg-white bg-amber-50 text-slate-700 text-sm font-medium rounded-xl flex items-center justify-center gap-2.5 transition"
-          onClick={loginWithGoogle}
+          onClick={handleGoogleLogin}
           disabled={loading}
         >
           <svg width="17" height="17" viewBox="0 0 24 24">

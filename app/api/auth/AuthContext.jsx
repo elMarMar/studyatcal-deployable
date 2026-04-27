@@ -59,8 +59,8 @@ export function AuthProvider({children}) {
         isAdmin,
         signup: (email, password) => createUserWithEmailAndPassword(auth, email, password),
         login: (email, password) => signInWithEmailAndPassword(auth, email, password),
-        logout:() => signOut(auth),
         loginWithGoogle: () => signInWithPopup(auth, new GoogleAuthProvider()),
+        logout:() => signOut(auth),
     };
 
     return (
