@@ -1,5 +1,6 @@
 import React from "react";
 import { numberToTimeInput, timeInputToNumber } from "../../utils/time";
+import { defaultFilters } from "./defaultFilters";
 
 //TODO: check this works properly and is in alignment
 type FiltersProps = {
@@ -30,8 +31,6 @@ const FilterItem = ({
   setFilters: React.Dispatch<React.SetStateAction<any>>;
 }) => {
   let isCheckedInState = false;
-  //makes sure checkbox only stays "checked" if its name is
-  //currently saved in your app's main filter list.
   if (Array.isArray(filters[category])) {
     if (filters[category].includes(label)) {
       isCheckedInState = true;
@@ -43,7 +42,7 @@ const FilterItem = ({
   }
 
   return (
-    <div className="filter-row">
+    <div className="flex flex-row items-center gap-2 pl-4 py-1">
       <input
         checked={isCheckedInState}
         onChange={(e) =>
@@ -52,13 +51,14 @@ const FilterItem = ({
             label,
             filters,
             setFilters,
-            e.target.checked,
+            e.target.checked
           )
         }
         type="checkbox"
-        className="accent-[#123175] self-start mt-0.5 ml-5"
+        name={category}
+        className="accent-[#123175] h-4 w-4"
       />
-      <p className="filter-label">{label}</p>
+      <label className="ml-2 text-sm">{label}</label>
     </div>
   );
 };
@@ -68,17 +68,14 @@ function handleFilterChange(
   value: string,
   filters: { search: string; [key: string]: any },
   setFilters: React.Dispatch<React.SetStateAction<any>>,
-  isChecked: boolean,
+  isChecked: boolean
 ) {
   let newFilters = { ...filters };
 
   switch (category) {
-    //Toggle case:
     case "openNow":
       newFilters.openNow = isChecked;
       break;
-
-    //List Filters
     case "amenities":
     case "foodAndDrinks":
     case "seatType":
@@ -87,18 +84,13 @@ function handleFilterChange(
       if (isChecked) {
         newFilters[category] = [...currentArray, value];
       } else {
-        newFilters[category] = currentArray.filter(
-          (item: string) => item !== value,
-        );
+        newFilters[category] = currentArray.filter((item: string) => item !== value);
       }
       break;
-
-    //single choices
     case "studyType":
     case "noiseLevel":
       newFilters[category] = isChecked ? value : "";
       break;
-
     default:
       console.warn(`Category ${category} not recognized.`);
   }
@@ -106,56 +98,86 @@ function handleFilterChange(
 }
 
 const Filters = ({ filters, setFilters }: FiltersProps) => {
-  // All filter UI is controlled, and parent handles fetching. No fetch here.
   return (
-    <>
-      <h1 className="filter-heading">Hours of Operation</h1>
-      <FilterItem label="Open now" category="openNow" filters={filters} setFilters={setFilters} />
-      <div className="filter-row">
-        <p className="filter-label">Start time: </p>
-        <input
-          type="time"
-          value={numberToTimeInput(filters.startTime)}
-          onChange={(e) => setFilters({ ...filters, startTime: timeInputToNumber(e.target.value) })}
-          className="rounded border border-[#123175] px-2 py-1"
+    <div className="flex flex-col gap-2">
+      <h2 className="font-bold text-md mt-2">Hours of Operation</h2>
+      <div className="flex flex-col gap-1 pl-2">
+        <FilterItem
+          label="Open now"
+          category="openNow"
+          filters={filters}
+          setFilters={setFilters}
+        />
+        <div className="flex flex-row items-center gap-2 pl-4 py-1">
+          <label className="text-sm flex-1">Start time:</label>
+          <input
+            type="time"
+            value={numberToTimeInput(filters.startTime)}
+            onChange={(e) => setFilters({ ...filters, startTime: timeInputToNumber(e.target.value) })}
+            className="rounded border border-[#123175] px-1 py-0.5 w-28"
+          />
+        </div>
+        <div className="flex flex-row items-center gap-2 pl-4 py-1">
+          <label className="text-sm flex-1">End time:</label>
+          <input
+            type="time"
+            value={numberToTimeInput(filters.endTime)}
+            onChange={(e) => setFilters({ ...filters, endTime: timeInputToNumber(e.target.value) })}
+            className="rounded border border-[#123175] px-1 py-0.5 w-28"
+          />
+        </div>
+      </div>
+
+      <h2 className="font-bold text-md mt-2">Location</h2>
+      <div className="flex flex-col gap-1 pl-2">
+        <FilterItem label="On Campus" category="location" filters={filters} setFilters={setFilters} />
+        <FilterItem label="South Campus" category="location" filters={filters} setFilters={setFilters} />
+        <FilterItem label="North Campus" category="location" filters={filters} setFilters={setFilters} />
+        <FilterItem label="Downtown" category="location" filters={filters} setFilters={setFilters} />
+      </div>
+
+      <h2 className="font-bold text-md mt-2">Noise Level</h2>
+      <div className="flex flex-col gap-1 pl-2">
+        <FilterItem label="Loud" category="noiseLevel" filters={filters} setFilters={setFilters} />
+        <FilterItem label="Quiet" category="noiseLevel" filters={filters} setFilters={setFilters} />
+      </div>
+
+      <h2 className="font-bold text-md mt-2">Food & Drinks</h2>
+      <div className="flex flex-col gap-1 pl-2">
+        <FilterItem label="Can purchase food/drinks" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
+        <FilterItem label="Drinks Allowed" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
+        <FilterItem label="Food Allowed" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
+      </div>
+
+      <h2 className="font-bold text-md mt-2">Study Type</h2>
+      <div className="flex flex-col gap-1 pl-2">
+        <FilterItem label="Group-friendly" category="studyType" filters={filters} setFilters={setFilters} />
+        <FilterItem label="Solo-friendly" category="studyType" filters={filters} setFilters={setFilters} />
+      </div>
+
+      <h2 className="font-bold text-md mt-2">Seating</h2>
+      <div className="flex flex-col gap-1 pl-2">
+        <FilterItem label="Desks" category="seatType" filters={filters} setFilters={setFilters} />
+        <FilterItem label="Sofas" category="seatType" filters={filters} setFilters={setFilters} />
+      </div>
+
+      <h2 className="font-bold text-md mt-2">Amenities</h2>
+      <div className="flex flex-col gap-1 pl-2">
+        <FilterItem
+          label="Has outlets"
+          category="amenities"
+          filters={filters}
+          setFilters={setFilters}
         />
       </div>
-      <div className="filter-row">
-        <p className="filter-label">End time: </p>
-        <input
-          type="time"
-          value={numberToTimeInput(filters.endTime)}
-          onChange={(e) => setFilters({ ...filters, endTime: timeInputToNumber(e.target.value) })}
-          className="rounded border border-[#123175] px-2 py-1"
-        />
-      </div>
 
-      <h1 className="filter-heading">Location</h1>
-      <FilterItem label="On Campus" category="location" filters={filters} setFilters={setFilters} />
-      <FilterItem label="South Campus" category="location" filters={filters} setFilters={setFilters} />
-      <FilterItem label="North Campus" category="location" filters={filters} setFilters={setFilters} />
-      <FilterItem label="Downtown" category="location" filters={filters} setFilters={setFilters} />
-
-      <h1 className="filter-heading">Noise Level</h1>
-      <FilterItem label="Loud" category="noiseLevel" filters={filters} setFilters={setFilters} />
-      <FilterItem label="Quiet" category="noiseLevel" filters={filters} setFilters={setFilters} />
-
-      <h1 className="filter-heading">Food & Drinks</h1>
-      <FilterItem label="Can purchase food/drinks" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
-      <FilterItem label="Drinks Allowed" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
-      <FilterItem label="Food Allowed" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
-
-      <h1 className="filter-heading">Study Type</h1>
-      <FilterItem label="Group-friendly" category="studyType" filters={filters} setFilters={setFilters} />
-      <FilterItem label="Solo-friendly" category="studyType" filters={filters} setFilters={setFilters} />
-
-      <h1 className="filter-heading">Seating</h1>
-      <FilterItem label="Desks" category="seatType" filters={filters} setFilters={setFilters} />
-      <FilterItem label="Sofas" category="seatType" filters={filters} setFilters={setFilters} />
-
-      <h1 className="filter-heading">Amenities</h1>
-      <FilterItem label="Has outlets" category="amenities" filters={filters} setFilters={setFilters} />
-    </>
+      <button
+        className="mt-4 mx-auto px-4 py-1 bg-[#185FA5] text-white rounded hover:bg-[#378ADD] text-sm"
+        onClick={() => setFilters(defaultFilters)}
+      >
+        Reset Filters
+      </button>
+    </div>
   );
 };
 
