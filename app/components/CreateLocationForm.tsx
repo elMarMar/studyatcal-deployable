@@ -7,6 +7,7 @@ const CreateLocationForm = () => {
     id: '',
     name: '',
     location: '',
+    description: '',
     image_url: '',
     google_maps_url: '',
     has_desk: false,
@@ -25,13 +26,16 @@ const CreateLocationForm = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, type, checked, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+      const { name, type, value } = e.target;
+      
+      const checked = (e.target as HTMLInputElement).checked;
+
+      setForm((prev) => ({
+        ...prev,
+        [name]: type === 'checkbox' ? checked : value,
+      }));
+    };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,8 +50,9 @@ const CreateLocationForm = () => {
       });
       if (!res.ok) throw new Error('Failed to create location');
       setSuccess('Location created!');
+      
       setForm({
-        id: '', name: '', location: '', image_url: '', google_maps_url: '',
+        id: '', name: '', location: '', description: '', image_url: '', google_maps_url: '',
         has_desk: false, has_sofa: false, can_purchase_food_drinks: false, allows_drinks: false, allows_food: false,
         noise_level: '', group_friendly: false, solo_friendly: false, has_outlets: false, current_busyness: 0,
       });
@@ -88,6 +93,19 @@ const CreateLocationForm = () => {
               <option value="south campus">South Campus</option>
               <option value="downtown">Downtown</option>
             </select>
+          </div>
+          <div>
+          <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+          <textarea 
+            id="description" 
+            name="description" 
+            rows={3}
+            className="mt-1 block w-full border border-gray-300 rounded px-3 py-2" 
+            placeholder="Tell us about this study spot..."
+            value={form.description} 
+            onChange={handleChange} 
+            disabled={loading} 
+          />
           </div>
           <div>
             <label htmlFor="image_url" className="block text-sm font-medium text-gray-700">Image URL</label>
