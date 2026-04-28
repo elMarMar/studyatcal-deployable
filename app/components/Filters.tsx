@@ -106,26 +106,17 @@ function handleFilterChange(
 }
 
 const Filters = ({ filters, setFilters }: FiltersProps) => {
+  // All filter UI is controlled, and parent handles fetching. No fetch here.
   return (
     <>
       <h1 className="filter-heading">Hours of Operation</h1>
-      <FilterItem
-        label="Open now"
-        category="openNow"
-        filters={filters}
-        setFilters={setFilters}
-      />
+      <FilterItem label="Open now" category="openNow" filters={filters} setFilters={setFilters} />
       <div className="filter-row">
         <p className="filter-label">Start time: </p>
         <input
           type="time"
           value={numberToTimeInput(filters.startTime)}
-          onChange={(e) =>
-            setFilters({
-              ...filters,
-              startTime: timeInputToNumber(e.target.value),
-            })
-          }
+          onChange={(e) => setFilters({ ...filters, startTime: timeInputToNumber(e.target.value) })}
           className="rounded border border-[#123175] px-2 py-1"
         />
       </div>
@@ -134,112 +125,36 @@ const Filters = ({ filters, setFilters }: FiltersProps) => {
         <input
           type="time"
           value={numberToTimeInput(filters.endTime)}
-          onChange={(e) =>
-            setFilters({
-              ...filters,
-              endTime: timeInputToNumber(e.target.value),
-            })
-          }
+          onChange={(e) => setFilters({ ...filters, endTime: timeInputToNumber(e.target.value) })}
           className="rounded border border-[#123175] px-2 py-1"
         />
       </div>
 
       <h1 className="filter-heading">Location</h1>
-      <FilterItem
-        label="On Campus"
-        category="location"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-      <FilterItem
-        label="South Campus"
-        category="location"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-      <FilterItem
-        label="North Campus"
-        category="location"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-      <FilterItem
-        label="Downtown"
-        category="location"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
+      <FilterItem label="On Campus" category="location" filters={filters} setFilters={setFilters} />
+      <FilterItem label="South Campus" category="location" filters={filters} setFilters={setFilters} />
+      <FilterItem label="North Campus" category="location" filters={filters} setFilters={setFilters} />
+      <FilterItem label="Downtown" category="location" filters={filters} setFilters={setFilters} />
 
       <h1 className="filter-heading">Noise Level</h1>
-      <FilterItem
-        label="Loud"
-        category="noiseLevel"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-      <FilterItem
-        label="Quiet"
-        category="noiseLevel"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
+      <FilterItem label="Loud" category="noiseLevel" filters={filters} setFilters={setFilters} />
+      <FilterItem label="Quiet" category="noiseLevel" filters={filters} setFilters={setFilters} />
 
       <h1 className="filter-heading">Food & Drinks</h1>
-      <FilterItem
-        label="Can purchase food/drinks"
-        category="foodAndDrinks"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-      <FilterItem
-        label="Drinks Allowed"
-        category="foodAndDrinks"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-      <FilterItem
-        label="Food Allowed"
-        category="foodAndDrinks"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
+      <FilterItem label="Can purchase food/drinks" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
+      <FilterItem label="Drinks Allowed" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
+      <FilterItem label="Food Allowed" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
 
       <h1 className="filter-heading">Study Type</h1>
-      <FilterItem
-        label="Group-friendly"
-        category="studyType"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-        <FilterItem
-        label="Solo-friendly"
-        category="studyType"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-
+      <FilterItem label="Group-friendly" category="studyType" filters={filters} setFilters={setFilters} />
+      <FilterItem label="Solo-friendly" category="studyType" filters={filters} setFilters={setFilters} />
 
       <h1 className="filter-heading">Seating</h1>
-      <FilterItem
-        label="Desks"
-        category="seatType"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
-      <FilterItem
-        label="Sofas"
-        category="seatType"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
+      <FilterItem label="Desks" category="seatType" filters={filters} setFilters={setFilters} />
+      <FilterItem label="Sofas" category="seatType" filters={filters} setFilters={setFilters} />
 
       <h1 className="filter-heading">Amenities</h1>
-      <FilterItem
-        label="Has outlets"
-        category="amenities"
-        filters={filters}
-        setFilters={setFilters}
-      ></FilterItem>
+      <FilterItem label="Has outlets" category="amenities" filters={filters} setFilters={setFilters} />
     </>
   );
 };

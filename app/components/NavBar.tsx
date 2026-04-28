@@ -1,5 +1,4 @@
 "use client";
-import Searchbar from "./Searchbar";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../api/auth/AuthContext";
 import Link from "next/link";
@@ -18,8 +17,7 @@ function Navbar({filters} : NavbarProps) {
   const router = useRouter();
   const { user, isAdmin, logout } = useAuth();
   return (
-    <div className="bg-[#FFFDEE] h-17 w-full shadow-sm flex items-center justify-between px-10 sticky top-0">
-      <Searchbar />
+    <div className="bg-[#FFFDEE] h-17 w-full shadow-sm flex items-center justify-between px-10 sticky top-0 z-50">
       <Link href="/">
         <h1 className="text-[#185FA5] text-[46px] font-black font-nunito">
           Study at Cal

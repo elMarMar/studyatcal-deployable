@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Nunito, Hind_Guntur, Tienne } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
-import SideNav from "./components/SideNav";
 import { AuthProvider } from "./api/auth/AuthContext";
 
 const nunito = Nunito({
@@ -32,7 +31,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  //TODO: Add filter props to NavBar and SideNav
   return (
     <html
       lang="en"
@@ -41,10 +39,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[#185FA5]">
         <AuthProvider>
           <NavBar />
-          <div className="flex flex-row flex-1">
-            <SideNav />
-            <main className="flex-1">{children}</main>
-          </div>
+          <main className="flex-1">{children}</main>
         </AuthProvider>
       </body>
     </html>
