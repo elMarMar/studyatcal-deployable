@@ -1,6 +1,7 @@
 // Global Location type for UI props
 export type Location = {
-    googlePlaceId: string;
+    id: number;
+	googlePlaceId: string;
     name: string;
 	location: string;
 	imageUrl: string;
