@@ -8,8 +8,8 @@ const Filters = () => {
 
   return (
     <div className="flex flex-col gap-2 p-2">
-      <h2 className="font-bold text-md mt-1">Hours of Operation</h2>
-      <div className="flex flex-col gap-1 pl-2">
+      <h2 className="font-tienne text-[#042C53] font-bold text-lg mt-1">Hours of Operation</h2>
+      <div className="flex flex-col gap-1">
         <CheckboxItem 
           label="Open now" 
           checked={filters.openNow} 
@@ -91,7 +91,7 @@ const Filters = () => {
       </FilterSection>
 
       <button
-        className="mt-4 mx-auto px-6 py-2 bg-[#185FA5] text-white rounded font-medium hover:bg-[#123175] transition-colors text-sm"
+        className="mt-4 w-full px-6 py-2 bg-transparent text-[#042C53] border border-[#042C53] rounded font-medium hover:bg-[#042C53] hover:text-white transition-colors duration-200 text-sm"
         onClick={resetFilters}
       >
         Reset Filters
@@ -104,13 +104,13 @@ const Filters = () => {
 
 const FilterSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
   <>
-    <h2 className="font-bold text-md mt-1">{title}</h2>
-    <div className="flex flex-col gap-1 pl-2">{children}</div>
+    <h2 className="font-tienne text-[#042C53] font-bold text-lg mt-1">{title}</h2>
+    <div className="flex flex-col gap-1">{children}</div>
   </>
 );
 
 const CheckboxItem = ({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) => (
-  <label className="flex flex-row items-center gap-2 pl-4 cursor-pointer group">
+  <label className="font-hind-guntur font-bold text-[#042C53] flex flex-row items-center gap-2 pl-4 cursor-pointer group">
     <input
       type="checkbox"
       checked={checked}
@@ -122,8 +122,8 @@ const CheckboxItem = ({ label, checked, onChange }: { label: string; checked: bo
 );
 
 const TimeInput = ({ label, value, onChange }: { label: string; value: number; onChange: (v: number) => void }) => (
-  <div className="flex flex-row items-center gap-2 pl-4">
-    <label className="text-sm flex-1">{label}</label>
+  <div className="flex flex-row items-center gap-2 pl-2">
+    <label className="font-hind-guntur font-bold text-[#042C53] text-sm flex-1">{label}</label>
     <input
       type="time"
       value={numberToTimeInput(value)}
