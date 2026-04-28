@@ -70,7 +70,7 @@ function handleFilterChange(
   setFilters: React.Dispatch<React.SetStateAction<any>>,
   isChecked: boolean
 ) {
-  let newFilters = { ...filters };
+  const newFilters = { ...filters };
 
   switch (category) {
     case "openNow":

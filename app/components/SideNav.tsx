@@ -8,7 +8,7 @@ type SideNavProps = {
 
 function SideNav({ filters, setFilters }: SideNavProps) {
   return (
-    <div className="bg-[#FFFDEE] min-h-screen w-72 p-6 flex flex-col gap-6">
+    <div className="bg-[#FFFDEE] sticky max-h-screen overflow-y-scroll w-72 p-6 flex flex-col gap-6">
       <Searchbar filters={filters} setFilters={setFilters} />
       <Filters filters={filters} setFilters={setFilters} />
     </div>

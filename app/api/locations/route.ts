@@ -22,6 +22,48 @@ export async function GET(req) {
 				values.push(...locations);
 			}
 		}
+
+		if (searchParams.has("amenities")) {
+			const amenities = searchParams.getAll("amenities");
+			const amenityMap = {
+				"Has outlets": "has_outlets"
+			};
+			amenities.forEach((amenity) => {
+				const dbField = amenityMap[amenity];
+				if (dbField) {
+					whereClauses.push(`${dbField} = 1`);
+				}
+			});
+		}
+
+		if (searchParams.has("foodAndDrinks")) {
+			const foodAndDrinks = searchParams.getAll("foodAndDrinks");
+			const foodMap = {
+				"Can purchase food/drinks": "can_purchase_food_drinks",
+				"Drinks Allowed": "allows_drinks",
+				"Food Allowed": "allows_food"
+			};
+			foodAndDrinks.forEach((item) => {
+				const dbField = foodMap[item];
+				if (dbField) {
+					whereClauses.push(`${dbField} = 1`);
+				}
+			});
+		}
+		if (searchParams.has("seatType")) {
+			const seatTypes = searchParams.getAll("seatType");
+			const seatMap = {
+				"Desks": "has_desk",
+				"Sofas": "has_sofa"
+			};
+			seatTypes.forEach((seat) => {
+				const dbField = seatMap[seat];
+				if (dbField) {
+					whereClauses.push(`${dbField} = 1`);
+				}
+			});
+		}
+		
 		if (searchParams.has("noiseLevel")) {
 			whereClauses.push("noise_level = ?");
 			values.push(searchParams.get("noiseLevel"));
