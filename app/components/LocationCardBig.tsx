@@ -24,7 +24,7 @@ const LocationCardBig = ({ location }: LocationCardBigProps) => {
           <div className="flex flex-col gap-2 md:col-start-1 md:row-start-1 md:row-span-2">
             <div className="flex flex-row justify-content gap-3">
               <img
-                src="./green-circle.png"
+                src="/green-circle.png"
                 id="LocationStatus"
                 className="h-4"
               />
@@ -39,7 +39,7 @@ const LocationCardBig = ({ location }: LocationCardBigProps) => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="./location.png" id="Location" className="h-4" />
+              <img src="/location.png" id="Location" className="h-4" />
               <p className="font-hind-guntur font-medium text-xl text-[#2D2D2D]">
                 {location.location}
               </p>
