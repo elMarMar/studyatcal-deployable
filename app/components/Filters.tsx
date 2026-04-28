@@ -42,7 +42,7 @@ const FilterItem = ({
   }
 
   return (
-    <div className="flex flex-row items-center gap-2 pl-4 py-1">
+    <div className="flex flex-row items-center gap-2 pl-4">
       <input
         checked={isCheckedInState}
         onChange={(e) =>
@@ -100,7 +100,7 @@ function handleFilterChange(
 const Filters = ({ filters, setFilters }: FiltersProps) => {
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="font-bold text-md mt-2">Hours of Operation</h2>
+      <h2 className="font-bold text-md mt-1">Hours of Operation</h2>
       <div className="flex flex-col gap-1 pl-2">
         <FilterItem
           label="Open now"
@@ -108,7 +108,7 @@ const Filters = ({ filters, setFilters }: FiltersProps) => {
           filters={filters}
           setFilters={setFilters}
         />
-        <div className="flex flex-row items-center gap-2 pl-4 py-1">
+        <div className="flex flex-row items-center gap-2 pl-4">
           <label className="text-sm flex-1">Start time:</label>
           <input
             type="time"
@@ -117,7 +117,7 @@ const Filters = ({ filters, setFilters }: FiltersProps) => {
             className="rounded border border-[#123175] px-1 py-0.5 w-28"
           />
         </div>
-        <div className="flex flex-row items-center gap-2 pl-4 py-1">
+        <div className="flex flex-row items-center gap-2 pl-4">
           <label className="text-sm flex-1">End time:</label>
           <input
             type="time"
@@ -128,7 +128,7 @@ const Filters = ({ filters, setFilters }: FiltersProps) => {
         </div>
       </div>
 
-      <h2 className="font-bold text-md mt-2">Location</h2>
+      <h2 className="font-bold text-md mt-1">Location</h2>
       <div className="flex flex-col gap-1 pl-2">
         <FilterItem label="On Campus" category="location" filters={filters} setFilters={setFilters} />
         <FilterItem label="South Campus" category="location" filters={filters} setFilters={setFilters} />
@@ -136,32 +136,32 @@ const Filters = ({ filters, setFilters }: FiltersProps) => {
         <FilterItem label="Downtown" category="location" filters={filters} setFilters={setFilters} />
       </div>
 
-      <h2 className="font-bold text-md mt-2">Noise Level</h2>
+      <h2 className="font-bold text-md mt-1">Noise Level</h2>
       <div className="flex flex-col gap-1 pl-2">
         <FilterItem label="Loud" category="noiseLevel" filters={filters} setFilters={setFilters} />
         <FilterItem label="Quiet" category="noiseLevel" filters={filters} setFilters={setFilters} />
       </div>
 
-      <h2 className="font-bold text-md mt-2">Food & Drinks</h2>
+      <h2 className="font-bold text-md mt-1">Food & Drinks</h2>
       <div className="flex flex-col gap-1 pl-2">
         <FilterItem label="Can purchase food/drinks" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
         <FilterItem label="Drinks Allowed" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
         <FilterItem label="Food Allowed" category="foodAndDrinks" filters={filters} setFilters={setFilters} />
       </div>
 
-      <h2 className="font-bold text-md mt-2">Study Type</h2>
+      <h2 className="font-bold text-md mt-1">Study Type</h2>
       <div className="flex flex-col gap-1 pl-2">
         <FilterItem label="Group-friendly" category="studyType" filters={filters} setFilters={setFilters} />
         <FilterItem label="Solo-friendly" category="studyType" filters={filters} setFilters={setFilters} />
       </div>
 
-      <h2 className="font-bold text-md mt-2">Seating</h2>
+      <h2 className="font-bold text-md mt-1">Seating</h2>
       <div className="flex flex-col gap-1 pl-2">
         <FilterItem label="Desks" category="seatType" filters={filters} setFilters={setFilters} />
         <FilterItem label="Sofas" category="seatType" filters={filters} setFilters={setFilters} />
       </div>
 
-      <h2 className="font-bold text-md mt-2">Amenities</h2>
+      <h2 className="font-bold text-md mt-1">Amenities</h2>
       <div className="flex flex-col gap-1 pl-2">
         <FilterItem
           label="Has outlets"
