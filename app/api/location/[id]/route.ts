@@ -48,7 +48,6 @@ export async function GET(
       );
     }
 
-    // SQL already aliases everything to camelCase
     const location = rows[0] as Location;
 
     const responseData = {

@@ -1,12 +1,13 @@
 import React from 'react';
+import { useFilters } from '@/app/context/FiltersContext';
+import  Image  from 'next/image'
 
-type SearchbarProps = {
-  filters: { search: string; [key: string]: any };
-  setFilters: React.Dispatch<React.SetStateAction<any>>;
-};
 
-function Searchbar({ filters, setFilters }: SearchbarProps) {
+
+function Searchbar() {
+  const { filters, updateFilter, resetFilters } = useFilters();
   const safeFilters = filters || { search: "" };
+  
   return (
     <div className="inline-flex items-center">
       <div className="relative w-72">
@@ -16,7 +17,7 @@ function Searchbar({ filters, setFilters }: SearchbarProps) {
           placeholder="Search Places"
           id="location-search-bar"
           value={safeFilters.search}
-          onChange={e => setFilters({ ...safeFilters, search: e.target.value })}
+          onChange={e => updateFilter("search", e.target.value, "single") }
         />
         <img
           src="/magnifying-glass.png"
