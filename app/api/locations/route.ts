@@ -71,6 +71,7 @@ export async function GET(req: NextRequest) {
             googlePlaceId: row.google_place_id,
             name: row.name,
             location: row.location,
+            description: row.description,
             imageUrl: row.image_url,
             googleMapsUrl: row.google_maps_url,
             hasDesk: row.has_desk,

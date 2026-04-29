@@ -4,6 +4,7 @@ export type Location = {
 	googlePlaceId: string;
     name: string;
 	location: string;
+	description: string;
 	imageUrl: string;
 	googleMapsUrl: string;
 	hasDesk: boolean;

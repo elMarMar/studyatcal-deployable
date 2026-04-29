@@ -18,7 +18,8 @@
     "pg": "^8.20.0",
     "processenv": "^3.0.9",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "vercel": "^52.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

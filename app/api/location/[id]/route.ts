@@ -11,6 +11,7 @@ const LOCATION_SELECT_COLUMNS = `
   google_place_id AS "googlePlaceId",
   name,
   location,
+  description,
   image_url AS "imageUrl",
   google_maps_url AS "googleMapsUrl",
   has_desk AS "hasDesk",
@@ -24,7 +25,7 @@ const LOCATION_SELECT_COLUMNS = `
   has_outlets AS "hasOutlets"
 `;
 
-export async function GET(request: Request, context: RouteContext) {
+export async function GET(_request: Request, context: RouteContext) {
   try {
     const { id } = await context.params;
 
