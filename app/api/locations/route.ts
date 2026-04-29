@@ -18,8 +18,8 @@ export async function GET(req: NextRequest) {
             const locations = searchParams.getAll("location");
             if (locations.length > 0) {
                 const placeholders = locations.map(() => `$${paramIndex++}`).join(",");
-                whereClauses.push(`location IN (${placeholders})`);
-                values.push(...locations);
+                whereClauses.push(`LOWER(location) IN (${placeholders})`);
+                values.push(...locations.map(l => l.toLowerCase()));
             }
         }
 
@@ -59,9 +59,18 @@ export async function GET(req: NextRequest) {
             });
         }
 
+        if (searchParams.has("studyType")) {
+            const studyType = searchParams.get("studyType");
+            if (studyType === "Group-friendly") {
+                whereClauses.push(`group_friendly = true`);
+            } else if (studyType === "Solo-friendly") {
+                whereClauses.push(`solo_friendly = true`);
+            }
+        }
+
         if (searchParams.has("noiseLevel")) {
-            whereClauses.push(`noise_level = $${paramIndex++}`);
-            values.push(searchParams.get("noiseLevel"));
+            whereClauses.push(`LOWER(noise_level) = $${paramIndex++}`);
+            values.push(searchParams.get("noiseLevel")!.toLowerCase());
         }
 
         const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(" AND ")}` : "";
