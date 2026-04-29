@@ -28,7 +28,7 @@ const Filters = () => {
       </div>
 
       <FilterSection title="Location">
-        {["on campus", "south Campus", "north Campus", "downtown"].map((loc) => (
+        {["on campus", "south campus", "north campus", "downtown"].map((loc) => (
           <CheckboxItem
             key={loc}
             label={loc}
@@ -72,7 +72,7 @@ const Filters = () => {
       </FilterSection>
 
       <FilterSection title="Seating">
-        {["Desks", "Sofas"].map((seat) => (
+        {["desks", "sofas"].map((seat) => (
           <CheckboxItem
             key={seat}
             label={seat}
@@ -85,8 +85,8 @@ const Filters = () => {
       <FilterSection title="Amenities">
         <CheckboxItem
           label="Has outlets"
-          checked={filters.amenities.includes("Has outlets")}
-          onChange={() => updateFilter("amenities", "Has outlets", "multi")}
+          checked={filters.amenities.includes("has outlets")}
+          onChange={() => updateFilter("amenities", "has outlets", "multi")}
         />
       </FilterSection>
 
