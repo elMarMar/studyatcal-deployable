@@ -110,7 +110,7 @@ const FilterSection = ({ title, children }: { title: string; children: React.Rea
 );
 
 const CheckboxItem = ({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) => (
-  <label className="font-hind-guntur font-bold text-[#042C53] flex flex-row items-center gap-2 pl-4 cursor-pointer group">
+  <label className="font-hind-guntur font-bold text-[#042C53] flex flex-row items-start gap-2 pl-4 cursor-pointer group">
     <input
       type="checkbox"
       checked={checked}

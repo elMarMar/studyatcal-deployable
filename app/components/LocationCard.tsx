@@ -13,7 +13,7 @@ function LocationCard({ location } : LocationCardProps) {
   return (
     <Link href={`/location/${location.id}`}>
       <div>
-        <div className="bg-[#FFFDEE] h-58 w-58 rounded-[35px] p-5 flex flex-col gap-1 shadow-[6px_6px_0px_0px_#EF9F27] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[9.5px_9.5px_0px_0px_#EF9F27] transition-all duration-150 ease-in-out">
+        <div className="bg-[#FFFDEE] h-64 w-64 rounded-[35px] p-5 flex flex-col gap-1 shadow-[6px_6px_0px_0px_#EF9F27] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[9.5px_9.5px_0px_0px_#EF9F27] transition-all duration-150 ease-in-out">
           <h1 className="font-tienne font-bold text-[#2D2D2D] text-[20px] p-0">
             {location.name}
           </h1>
