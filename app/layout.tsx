@@ -3,6 +3,7 @@ import { Nunito, Hind_Guntur, Tienne } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import { AuthProvider } from "./api/auth/AuthContext";
+import SideNav from "./components/SideNav";
 
 const nunito = Nunito({
   variable: "--font-nunito",

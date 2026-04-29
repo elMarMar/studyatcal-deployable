@@ -1,7 +1,5 @@
 import React from 'react';
 import { useFilters } from '@/app/context/FiltersContext';
-import  Image  from 'next/image'
-
 
 
 function Searchbar() {

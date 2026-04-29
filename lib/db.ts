@@ -1,7 +1,7 @@
 import "server-only";
 import mysql, { Pool } from "mysql2/promise"; // We create a connection pool instead of createConnection to asynchronously manage multiple connections to the database
 
-// Create new type: glovalWithPool that extends globalThis and adds optional __mysqlPool property.
+// Create new type: globalWithPool that extends globalThis and adds optional __mysqlPool property.
 type GlobalWithPool = typeof globalThis & { __mysqlPool?: Pool }; 
 
 // Cast globalWithPool as GlobalWithPool to access the __mysqlPool property.

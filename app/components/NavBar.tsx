@@ -45,10 +45,10 @@ function Navbar({filters} : NavbarProps) {
               </button>
             </Link>
 
-            <Link href="/login">
+            <Link href="/signup">
               <button
               className="w-auto p-2.5 bg-[#378ADD] hover:bg-[#599EE3] font-tienne text-white text-md font-bold rounded-xl transition"
-              onClick={() => router.push("/login")}
+              onClick={() => router.push("/signup")}
               >
                 Sign up 
               </button>

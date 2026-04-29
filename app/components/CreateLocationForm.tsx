@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 
 const CreateLocationForm = () => {
   const [form, setForm] = useState({
-    id: '',
+    google_place_id: '',
     name: '',
     location: '',
     description: '',
@@ -52,7 +52,7 @@ const CreateLocationForm = () => {
       setSuccess('Location created!');
       
       setForm({
-        id: '', name: '', location: '', description: '', image_url: '', google_maps_url: '',
+        google_place_id: '', name: '', location: '', description: '', image_url: '', google_maps_url: '',
         has_desk: false, has_sofa: false, can_purchase_food_drinks: false, allows_drinks: false, allows_food: false,
         noise_level: '', group_friendly: false, solo_friendly: false, has_outlets: false, current_busyness: 0,
       });
@@ -69,8 +69,8 @@ const CreateLocationForm = () => {
         {error && <div className="text-red-600 text-sm text-center">{error}</div>}
         {success && <div className="text-green-600 text-sm text-center">{success}</div>}
         <div>
-          <label htmlFor="id" className="block text-sm font-medium text-gray-700">ID</label>
-          <input type="text" id="id" name="id" className="mt-1 block w-full border border-gray-300 rounded px-3 py-2" value={form.id} onChange={handleChange} disabled={loading} required />
+          <label htmlFor="google_place_id" className="block text-sm font-medium text-gray-700">Google Place ID</label>
+          <input type="text" id="google_place_id" name="google_place_id" className="mt-1 block w-full border border-gray-300 rounded px-3 py-2" value={form.google_place_id} onChange={handleChange} disabled={loading} required />
         </div>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
