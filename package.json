@@ -15,6 +15,7 @@
     "firebase-admin": "^13.8.0",
     "mysql2": "^3.22.0",
     "next": "^16.2.3",
+    "pg": "^8.20.0",
     "processenv": "^3.0.9",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.20.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

@@ -1,11 +1,20 @@
 import LocationsPage from "./LocationsPage";
 import { FilterProvider } from "@/app/context/FiltersContext";
+import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
 
-export default function Home() {
+export default async function Page() {
+  const cookieStore = await cookies()
+  const supabase = createClient(cookieStore)
+
+  const { data: todos } = await supabase.from('todos').select()
+
   return (
-    <FilterProvider>
-      <LocationsPage />
-    </FilterProvider>
-  );
+    <ul>
+      {todos?.map((todo) => (
+        <li key={todo.id}>{todo.name}</li>
+      ))}
+    </ul>
+  )
 }
 
