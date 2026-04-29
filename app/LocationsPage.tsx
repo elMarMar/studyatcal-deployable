@@ -28,7 +28,7 @@ export default function LocationsPage() {
 
         const response = await fetch(`/api/locations?${params.toString()}`);
         const data = await response.json();
-        
+
         setLocations(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Failed to fetch locations:", error);
@@ -38,8 +38,7 @@ export default function LocationsPage() {
     };
 
     fetchLocations();
-  }, [filters]); 
-
+  }, [filters]);
 
   return (
     <div className="flex flex-row w-full">

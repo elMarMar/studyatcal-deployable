@@ -1,22 +1,23 @@
 import { NextResponse, NextRequest } from "next/server";
 import { pool } from "@/lib/db";
-import { RowDataPacket } from "mysql2";
 
 export async function GET(req: NextRequest) {
     try {
         const { searchParams } = new URL(req.url);
         const whereClauses: string[] = [];
         const values: any[] = [];
+        let paramIndex = 1;
 
         if (searchParams.has("search")) {
-            whereClauses.push("name LIKE ?");
+            whereClauses.push(`name ILIKE $${paramIndex++}`);
             values.push(`%${searchParams.get("search")}%`);
         }
 
         if (searchParams.has("location")) {
             const locations = searchParams.getAll("location");
             if (locations.length > 0) {
-                whereClauses.push(`location IN (${locations.map(() => "?").join(",")})`);
+                const placeholders = locations.map(() => `$${paramIndex++}`).join(",");
+                whereClauses.push(`location IN (${placeholders})`);
                 values.push(...locations);
             }
         }
@@ -28,9 +29,7 @@ export async function GET(req: NextRequest) {
             };
             amenities.forEach((amenity) => {
                 const dbField = amenityMap[amenity];
-                if (dbField) {
-                    whereClauses.push(`${dbField} = 1`);
-                }
+                if (dbField) whereClauses.push(`${dbField} = true`);
             });
         }
 
@@ -43,9 +42,7 @@ export async function GET(req: NextRequest) {
             };
             foodAndDrinks.forEach((item) => {
                 const dbField = foodMap[item];
-                if (dbField) {
-                    whereClauses.push(`${dbField} = 1`);
-                }
+                if (dbField) whereClauses.push(`${dbField} = true`);
             });
         }
 
@@ -57,27 +54,18 @@ export async function GET(req: NextRequest) {
             };
             seatTypes.forEach((seat) => {
                 const dbField = seatMap[seat];
-                if (dbField) {
-                    whereClauses.push(`${dbField} = 1`);
-                }
+                if (dbField) whereClauses.push(`${dbField} = true`);
             });
         }
-        
+
         if (searchParams.has("noiseLevel")) {
-            whereClauses.push("noise_level = ?");
+            whereClauses.push(`noise_level = $${paramIndex++}`);
             values.push(searchParams.get("noiseLevel"));
         }
 
-        // 7. Open Now Logic (Placeholder)
-        if (searchParams.get("openNow") === "true") {
-            // Note: This usually requires checking current time against an 'opening_hours' table
-            // For now, leaving as a placeholder as per your original code
-        }
-
         const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(" AND ")}` : "";
-        const [rows] = await pool.query<RowDataPacket[]>(`SELECT * FROM locations ${where}`, values);
+        const { rows } = await pool.query(`SELECT * FROM locations ${where}`, values);
 
-        // Map snake_case DB fields to camelCase for frontend
         const camelRows = rows.map((row) => ({
             id: row.id,
             googlePlaceId: row.google_place_id,
@@ -85,8 +73,8 @@ export async function GET(req: NextRequest) {
             location: row.location,
             imageUrl: row.image_url,
             googleMapsUrl: row.google_maps_url,
-            hasDesk: row.has_desk,             
-            hasSofa: row.has_sofa,         
+            hasDesk: row.has_desk,
+            hasSofa: row.has_sofa,
             canPurchaseFoodDrinks: row.can_purchase_food_drinks,
             allowsDrinks: row.allows_drinks,
             allowsFood: row.allows_food,
@@ -101,7 +89,7 @@ export async function GET(req: NextRequest) {
     } catch (err) {
         console.error("Error fetching locations:", err);
         return NextResponse.json(
-            { message: "Database error", error: String(err) }, 
+            { message: "Database error", error: String(err) },
             { status: 500 }
         );
     }
