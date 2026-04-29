@@ -28,7 +28,7 @@ const Filters = () => {
       </div>
 
       <FilterSection title="Location">
-        {["On Campus", "South Campus", "North Campus", "Downtown"].map((loc) => (
+        {["on campus", "south Campus", "north Campus", "downtown"].map((loc) => (
           <CheckboxItem
             key={loc}
             label={loc}
@@ -39,7 +39,7 @@ const Filters = () => {
       </FilterSection>
 
       <FilterSection title="Noise Level">
-        {["Loud", "Quiet"].map((level) => (
+        {["loud", "quiet"].map((level) => (
           <CheckboxItem
             key={level}
             label={level}
@@ -50,7 +50,7 @@ const Filters = () => {
       </FilterSection>
 
       <FilterSection title="Food & Drinks">
-        {["Can purchase food/drinks", "Drinks Allowed", "Food Allowed"].map((item) => (
+        {["can purchase food/drinks", "drinks Allowed", "food allowed"].map((item) => (
           <CheckboxItem
             key={item}
             label={item}
@@ -61,7 +61,7 @@ const Filters = () => {
       </FilterSection>
 
       <FilterSection title="Study Type">
-        {["Group-friendly", "Solo-friendly"].map((type) => (
+        {["group-friendly", "solo-friendly"].map((type) => (
           <CheckboxItem
             key={type}
             label={type}
