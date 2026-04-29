@@ -3,17 +3,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../api/auth/AuthContext";
 import Link from "next/link";
 
-type NavbarProps = {
-  //must have search property (that is a string)
-  //can have any other properties but they must have a string key
-  filters: {
-    search: string;
-    [key: string]: any;
-  };
-  setFilters: React.Dispatch<React.SetStateAction<any>>;
-};
-
-function Navbar({filters} : NavbarProps) {
+function Navbar() {
   const router = useRouter();
   const { user, isAdmin, logout } = useAuth();
   return (

@@ -1,11 +1,12 @@
 import { NextResponse, NextRequest } from "next/server";
 import { pool } from "@/lib/db";
 
+
 export async function GET(req: NextRequest) {
     try {
         const { searchParams } = new URL(req.url);
         const whereClauses: string[] = [];
-        const values: any[] = [];
+        const values: (string | number | boolean | null)[] = [];
         let paramIndex = 1;
 
         if (searchParams.has("search")) {
@@ -66,7 +67,27 @@ export async function GET(req: NextRequest) {
         const where = whereClauses.length > 0 ? `WHERE ${whereClauses.join(" AND ")}` : "";
         const { rows } = await pool.query(`SELECT * FROM locations ${where}`, values);
 
-        const camelRows = rows.map((row) => ({
+        type LocationRow = {
+            id: number;
+            google_place_id: string;
+            name: string;
+            location: string;
+            description: string;
+            image_url: string;
+            google_maps_url: string;
+            has_desk: boolean;
+            has_sofa: boolean;
+            can_purchase_food_drinks: boolean;
+            allows_drinks: boolean;
+            allows_food: boolean;
+            noise_level: string;
+            group_friendly: boolean;
+            solo_friendly: boolean;
+            has_outlets: boolean;
+            current_busyness?: string | number | null;
+        };
+
+        const camelRows = rows.map((row: LocationRow) => ({
             id: row.id,
             googlePlaceId: row.google_place_id,
             name: row.name,

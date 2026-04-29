@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 import LocationCard from "./components/LocationCard";
 import SideNav from "./components/SideNav";
 import { useFilters } from "@/app/context/FiltersContext";
+import type { Location } from "@/app/location/types";
 
 export default function LocationsPage() {
   const { filters } = useFilters();
-  const [locations, setLocations] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [locations, setLocations] = useState<Location[]>([]);
+  // Removed unused isLoading state
 
   useEffect(() => {
     const fetchLocations = async () => {
-      setIsLoading(true);
       try {
         const params = new URLSearchParams();
 
@@ -32,8 +32,6 @@ export default function LocationsPage() {
         setLocations(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("Failed to fetch locations:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
 

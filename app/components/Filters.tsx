@@ -121,7 +121,7 @@ const CheckboxItem = ({ label, checked, onChange }: { label: string; checked: bo
   </label>
 );
 
-const TimeInput = ({ label, value, onChange }: { label: string; value: number; onChange: (v: number) => void }) => (
+const TimeInput = ({ label, value, onChange }: { label: string; value: number | null; onChange: (v: number | null) => void }) => (
   <div className="flex flex-row items-center gap-2 pl-2">
     <label className="font-hind-guntur font-bold text-[#042C53] text-sm flex-1">{label}</label>
     <input
