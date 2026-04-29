@@ -64,11 +64,14 @@ const CreateLocationForm = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded shadow">
+    <div className="max-w-md mx-auto p-6 bg-[#FFFDEE] rounded shadow">
       <form className="space-y-4" onSubmit={handleSubmit}>
         {error && <div className="text-red-600 text-sm text-center">{error}</div>}
         {success && <div className="text-green-600 text-sm text-center">{success}</div>}
         <div>
+          <a href="https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder"
+          className="underline text-sm font-medium text-gray-700"
+          target="_blank">Places Website</a>
           <label htmlFor="google_place_id" className="block text-sm font-medium text-gray-700">Google Place ID</label>
           <input type="text" id="google_place_id" name="google_place_id" className="mt-1 block w-full border border-gray-300 rounded px-3 py-2" value={form.google_place_id} onChange={handleChange} disabled={loading} required />
         </div>
