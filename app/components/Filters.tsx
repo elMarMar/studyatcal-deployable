@@ -31,7 +31,7 @@ const Filters = () => {
         {["on campus", "south campus", "north campus", "downtown"].map((loc) => (
           <CheckboxItem
             key={loc}
-            label={loc}
+            label={loc.slice(0,1).toUpperCase() + loc.slice(1)}
             checked={filters.location.includes(loc)}
             onChange={() => updateFilter("location", loc, "multi")}
           />
@@ -42,7 +42,7 @@ const Filters = () => {
         {["loud", "quiet"].map((level) => (
           <CheckboxItem
             key={level}
-            label={level}
+            label={level.slice(0,1).toUpperCase() + level.slice(1)}
             checked={filters.noiseLevel === level}
             onChange={() => updateFilter("noiseLevel", level, "single")}
           />
