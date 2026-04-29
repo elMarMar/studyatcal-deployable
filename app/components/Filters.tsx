@@ -50,7 +50,7 @@ const Filters = () => {
       </FilterSection>
 
       <FilterSection title="Food & Drinks">
-        {["can purchase food/drinks", "drinks Allowed", "food allowed"].map((item) => (
+        {["Can purchase food/drinks", "Drinks Allowed", "Food allowed"].map((item) => (
           <CheckboxItem
             key={item}
             label={item}
@@ -61,7 +61,7 @@ const Filters = () => {
       </FilterSection>
 
       <FilterSection title="Study Type">
-        {["group-friendly", "solo-friendly"].map((type) => (
+        {["Group-friendly", "Solo-friendly"].map((type) => (
           <CheckboxItem
             key={type}
             label={type}
@@ -72,7 +72,7 @@ const Filters = () => {
       </FilterSection>
 
       <FilterSection title="Seating">
-        {["desks", "sofas"].map((seat) => (
+        {["Desks", "Sofas"].map((seat) => (
           <CheckboxItem
             key={seat}
             label={seat}
@@ -85,8 +85,8 @@ const Filters = () => {
       <FilterSection title="Amenities">
         <CheckboxItem
           label="Has outlets"
-          checked={filters.amenities.includes("has outlets")}
-          onChange={() => updateFilter("amenities", "has outlets", "multi")}
+          checked={filters.amenities.includes("Has outlets")}
+          onChange={() => updateFilter("amenities", "Has outlets", "multi")}
         />
       </FilterSection>
 

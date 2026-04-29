@@ -39,12 +39,21 @@ export async function GET(req: NextRequest) {
             const foodMap: Record<string, string> = {
                 "Can purchase food/drinks": "can_purchase_food_drinks",
                 "Drinks Allowed": "allows_drinks",
-                "Food Allowed": "allows_food"
+                "Food allowed": "allows_food" // match UI label exactly
             };
             foodAndDrinks.forEach((item) => {
                 const dbField = foodMap[item];
                 if (dbField) whereClauses.push(`${dbField} = true`);
             });
+        }
+        // Handle Study Type filter (Group-friendly, Solo-friendly)
+        if (searchParams.has("studyType")) {
+            const studyType = searchParams.get("studyType");
+            if (studyType === "Group-friendly") {
+                whereClauses.push(`group_friendly = true`);
+            } else if (studyType === "Solo-friendly") {
+                whereClauses.push(`solo_friendly = true`);
+            }
         }
 
         if (searchParams.has("seatType")) {
