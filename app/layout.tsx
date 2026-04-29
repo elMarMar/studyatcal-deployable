@@ -3,7 +3,7 @@ import { Nunito, Hind_Guntur, Tienne } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import { AuthProvider } from "./api/auth/AuthContext";
-import SideNav from "./components/SideNav";
+import { FilterProvider } from "./context/FiltersContext";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -39,8 +39,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#185FA5]">
         <AuthProvider>
-          <NavBar />
-          <main className="flex-1">{children}</main>
+          <FilterProvider>
+            <NavBar />
+            <main className="flex-1">{children}</main>
+          </FilterProvider>
         </AuthProvider>
       </body>
     </html>
